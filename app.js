@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const path = require('path');
 const config = require('./config');
+const logger = require('./src/modules/logger')();
 
 const manager = new Discord.ShardingManager(path.join(__dirname, './src/index.js'), {
     token: config.sharding.token,
@@ -9,11 +10,11 @@ const manager = new Discord.ShardingManager(path.join(__dirname, './src/index.js
 });
 
 manager.on('shardCreate', shard => {
-    console.log(`----- SHARD ${shard.id} LAUNCHED -----`);
-    shard.on('death', () => console.log(`----- SHARD ${shard.id} DIED -----`))
-        .on('ready', () => console.log(`----- SHARD ${shard.id} READY -----`))
-        .on('disconnect', () => console.log(`----- SHARD ${shard.id} DISCONNECTED -----`))
-        .on('reconnecting', () => console.log(`----- SHARD ${shard.id} RECONNECTING -----`));
+    logger.info(`----- SHARD ${shard.id} LAUNCHED -----`);
+    shard.on('death', () => logger.error(`----- SHARD ${shard.id} DIED -----`))
+        .on('ready', () => logger.info(`----- SHARD ${shard.id} READY -----`))
+        .on('disconnect', () => logger.warn(`----- SHARD ${shard.id} DISCONNECTED -----`))
+        .on('reconnecting', () => logger.info(`----- SHARD ${shard.id} RECONNECTING -----`));
 });
 
-manager.spawn().catch(console.error);
+manager.spawn().catch(logger.error);
