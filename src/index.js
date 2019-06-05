@@ -14,6 +14,9 @@ client.registry
             'fun', 'Fun commands',
         ],
         [
+            'util', 'Utility commands',
+        ],
+        [
             'admin', 'Guild admin commands',
         ],
         [
@@ -25,6 +28,3 @@ client.registry
 
 logger.info(`[Shard ${client.shard.id}] Online!`, client.shard.id); // use winston logging, add shard to log message.
 client.login();
-
-
-// demo: https://github.com/discordjs/Commando/blob/master/test/

@@ -1,6 +1,6 @@
 const { Command, } = require('discord.js-commando');
 
-module.exports = class SexyDice extends Command {
+module.exports = class SexyDiceCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'sdice',
@@ -51,6 +51,7 @@ module.exports = class SexyDice extends Command {
                 'Shit on',
                 'Piss on',
                 'Penetrate',
+                'Stab',
             ],
             victim: [
                 'his',
@@ -95,6 +96,7 @@ module.exports = class SexyDice extends Command {
                 'supermarket',
                 'post office',
                 'gas station bathroom',
+                'seven eleven'
             ],
         };
 
